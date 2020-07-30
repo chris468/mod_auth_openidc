@@ -732,7 +732,9 @@ static apr_byte_t oidc_util_http_call(request_rec *r, const char *url,
 	char *ptr = NULL;
 	char *retval = (char *) malloc(sizeof (TCHAR) * (MAX_PATH + 1));
 	retval[0] = '\0';
-	buflen = SearchPath(NULL, "curl-ca-bundle.crt", NULL, MAX_PATH+1, retval, &ptr);
+	// buflen = SearchPath(NULL, "curl-ca-bundle.crt", NULL, MAX_PATH+1, retval, &ptr);
+	strcpy(retval, "C:\\Program Files\\National Instruments\\Shared\\nicurl\\ca-bundle.crt");
+	buflen = strlen(retval);
 	if (buflen > 0)
 		curl_easy_setopt(curl, CURLOPT_CAINFO, retval);
 	else
